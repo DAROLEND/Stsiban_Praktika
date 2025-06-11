@@ -1,0 +1,63 @@
+﻿@model WebApplication1.Models.FlowerListViewModel
+
+@using PagedList.Mvc   
+@using PagedList         
+
+    @{
+
+                    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>Асортимент квітів</h2>
+
+    <form method="get" class="form-inline mb-3">
+        <label>Постачальник:</label>
+        @Html.DropDownList("supplierId", Model.Suppliers, new { @class = "form-control mx-2" })
+        <input type="submit" value="Фільтрувати" class="btn btn-primary" />
+    </form>
+
+    <p>
+        @Html.ActionLink("Додати квітку", "Create", null, new { @class = "btn btn-success" })
+    </p>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Назва</th>
+                <th>Категорія</th>
+                <th>Ціна</th>
+                <th>Постачальник</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var f in Model.Flowers)
+            {
+                <tr>
+                    <td>@f.Name</td>
+                    <td>@f.Category</td>
+                    <td>@f.Price грн</td>
+                    <td>@(f.Supplier != null ? f.Supplier.Name : "—")</td>
+                    <td>
+                        @Html.ActionLink("Деталі", "Details", new { id = f.Id }, new { @class = "btn btn-info btn-sm" }) |
+                        @Html.ActionLink("Редагувати", "Edit", new { id = f.Id }, new { @class = "btn btn-warning btn-sm" }) |
+                        @Html.ActionLink("Видалити", "Delete", new { id = f.Id }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="btn-group">
+        @Html.PagedListPager(
+            Model.Flowers,
+            page => Url.Action("Index", new { page, supplierId = Model.SelectedSupplierId }),
+            new PagedListRenderOptions
+            {
+                DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                DisplayLinkToLastPage  = PagedListDisplayMode.Always,
+                DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+                DisplayLinkToNextPage     = PagedListDisplayMode.Always
+            }
+        )
+    </div>

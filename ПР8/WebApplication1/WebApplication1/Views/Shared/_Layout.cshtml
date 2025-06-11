@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/site.css" rel="stylesheet" type="text/css" />
+    @RenderSection("head", required: false)
+</head>
+<body>
+    <header id="header">
+        <h1>Магазин квітів</h1>
+    </header>
+
+    <nav id="nav">
+        <ul>
+            <li>@Html.ActionLink("Головна", "Index", "Flower")</li>
+        </ul>
+    </nav>
+
+    <aside id="side">
+        <h2>Категорії</h2>
+        <ul>
+            <li>@Html.ActionLink("Троянди", "Index", "Flower", new { category = "Троянди" }, null)</li>
+            <li>@Html.ActionLink("Тюльпани", "Index", "Flower", new { category = "Тюльпани" }, null)</li>
+            <li>@Html.ActionLink("Польові", "Index", "Flower", new { category = "Польові" }, null)</li>
+        </ul>
+    </aside>
+
+    <div id="con">
+        @RenderBody()
+    </div>
+
+    <footer id="footer">
+        &copy; 2025 Магазин квітів. Всі права захищені.
+    </footer>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

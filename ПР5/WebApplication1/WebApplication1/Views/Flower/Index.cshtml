@@ -1,0 +1,44 @@
+﻿@model IEnumerable<FlowerStore.Models.Flower>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Асортимент квітів</h2>
+
+<p>
+    @Html.ActionLink("Додати квітку", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Назва</th>
+            <th>Категорія</th>
+            <th>Ціна</th>
+            <th>Постачальник</th>
+            <th>Дії</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var f in Model)
+        {
+            <tr>
+                <td>@f.Name</td>
+                <td>@f.Category</td>
+                <td>@f.Price грн</td>
+                <td>
+                    @(f.Supplier != null
+                                ? f.Supplier.Name
+                                : "—")
+                </td>
+                <td>
+                    @Html.ActionLink("Деталі", "Details", new { id = f.Id }, new { @class = "btn btn-info btn-sm" }) |
+                    @Html.ActionLink("Редагувати", "Edit", new { id = f.Id }, new { @class = "btn btn-warning btn-sm" }) |
+                    @Html.ActionLink("Видалити", "Delete", new { id = f.Id }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

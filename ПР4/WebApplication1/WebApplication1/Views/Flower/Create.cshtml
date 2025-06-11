@@ -1,0 +1,16 @@
+﻿@model FlowerStore.Models.Flower
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Додати квітку</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p>Назва: @Html.EditorFor(m => m.Name)</p>
+    <p>Категорія: @Html.EditorFor(m => m.Category)</p>
+    <p>Ціна: @Html.EditorFor(m => m.Price)</p>
+    <input type="submit" value="Додати" />
+}

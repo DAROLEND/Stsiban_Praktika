@@ -1,0 +1,24 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Покупка квітки</title>
+</head>
+<body>
+    <div>
+        <h3>Форма оформлення покупки</h3>
+        <form method="post">
+            <input type="hidden" value="@ViewBag.FlowerId" name="FlowerId" />
+            <table>
+                <tr><td>Ім’я:</td><td><input type="text" name="Person" required /></td></tr>
+                <tr><td>Адреса:</td><td><input type="text" name="Address" required /></td></tr>
+                <tr><td colspan="2"><input type="submit" value="Відправити" /></td></tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

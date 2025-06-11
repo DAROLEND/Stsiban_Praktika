@@ -1,0 +1,12 @@
+﻿@model FlowerStore.Models.Flower
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Деталі квітки</h2>
+<p><strong>Назва:</strong> @Model.Name</p>
+<p><strong>Категорія:</strong> @Model.Category</p>
+<p><strong>Ціна:</strong> @Model.Price грн</p>
+
+<p>@Html.ActionLink("Назад", "Index")</p>

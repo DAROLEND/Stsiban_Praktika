@@ -1,0 +1,8 @@
+﻿@model FlowerStore.Models.Flower
+
+@using (Html.BeginForm("Delete", "Flower", new { id = Model.Id }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <p>Ви впевнені, що хочете видалити "@Model.Name"?</p>
+    <input type="submit" value="Видалити" />
+}
